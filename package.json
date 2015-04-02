@@ -1,0 +1,30 @@
+{
+  "name": "ceibacr",
+  "version": "0.1.0",
+  "description": "JCR Inspired Node.js API",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --check-leaks"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ottogiron/ceibacr.git"
+  },
+  "keywords": [
+    "Node.js",
+    "JCR",
+    "Modeshape",
+    "API"
+  ],
+  "author": "Otto Giron",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ottogiron/ceibacr/issues"
+  },
+  "homepage": "https://github.com/ottogiron/ceibacr",
+  "dependencies": {
+    "chai": "^2.2.0",
+    "istanbul": "^0.3.13",
+    "mocha": "^2.2.1"
+  }
+}
