@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/ottogiron/ceibacr",
   "dependencies": {
+    "lodash": "^3.6.0",
     "modeshape-rest-client": "git+https://github.com/ottogiron/modeshape-rest-client.git"
   },
   "devDependencies": {
