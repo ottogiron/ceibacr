@@ -1,6 +1,8 @@
+require('chai').should();
 var Repository = require('../lib/repository');
 var Client = require('../lib/client');
-require('chai').should();
+var Node = require('../lib/node');
+
 
 describe('ceibacr repository', function() {
 
@@ -11,21 +13,28 @@ describe('ceibacr repository', function() {
         repository: 'sample'
     };
 
-    it('should initialize a new repository session', function(){
+    var client;
+    before(function(){
 
         var repository = new Repository(options);
 
-        var client = repository.login({
+        client = repository.login({
             user: 'admin',
             password: 'admin'
         }, 'default');
 
-        client.should.be.instanceof(Client);
     });
 
-    it('should initialize a new repository using Repository as factory', function() {
 
-        var repository = Repository(options);
-        repository.should.be.instanceof(Repository);
+    it('should return a node by path', function(done){
+
+        var path = '/';
+        client.getNode(path, function(err, node){
+
+            node.should.be.instanceof(Node);
+            node.should.have.property('id');
+            done();
+        });
     });
+
 });
