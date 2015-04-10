@@ -4,7 +4,7 @@ var Client = require('../lib/client');
 var Node = require('../lib/node');
 
 
-describe('ceibacr repository', function() {
+describe('ceibacr client', function() {
 
     var options = {
         port: 8080,
