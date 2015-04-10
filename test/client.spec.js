@@ -37,4 +37,17 @@ describe('ceibacr repository', function() {
         });
     });
 
+
+    it('should return a node by path and children depth', function(done) {
+
+        var path = '/';
+        var depth = 1;
+        client.getNode(path, depth, function(err, node) {
+
+            node.should.be.instanceof(Node);
+            node.should.have.property('id');
+            done();
+        });
+    });
+
 });
