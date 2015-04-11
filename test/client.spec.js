@@ -50,4 +50,24 @@ describe('ceibacr client', function() {
         });
     });
 
+
+    it('should return a node by identifier', function(done) {
+
+        var path = '/jcr:system';
+        client.getNode(path, function(err, node){
+
+            node.should.be.instanceof(Node);
+            node.should.have.property('id');
+
+
+            client.getNodeByIdentifier(node.id, function(err, nodeById) {
+
+               nodeById.should.be.instanceof(Node);
+               nodeById.should.have.property('id');
+               nodeById.id.should.be.equal(node.id);
+               done();
+            });
+        });
+    });
+
 });
