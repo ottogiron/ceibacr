@@ -1,8 +1,10 @@
 require('chai').should();
+var expect = require('chai').expect;
 var Repository = require('../lib/repository');
 var Client = require('../lib/client');
 var Node = require('../lib/node');
 var Config = require('./config');
+var _ = require('lodash');
 
 describe('ceibacr client', function() {
 
@@ -109,6 +111,23 @@ describe('ceibacr client', function() {
             var identifier = client.getIdentifier(node);
             identifier.should.be.equal(node.identifier);
             done();
+        });
+    });
+
+
+    it('should return a node children', function(done) {
+
+        var path = '/';
+        client.getNode(path, function(err, node) {
+
+            client.getChildren(node, function(err, children) {
+
+                children.should.be.an('array');
+                children.should.have.length.above(0);                
+                var jcrSystemNode = _.find(children, { name: 'jcr:system'});
+                expect(jcrSystemNode).to.be.instanceof(Node);
+                done();
+            });
         });
     });
 
