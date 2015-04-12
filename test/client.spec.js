@@ -70,4 +70,28 @@ describe('ceibacr client', function() {
         });
     });
 
+
+    it('should return a node path', function(done) {
+
+        var path = '/jcr:system';
+        client.getNode(path, function(err, node) {
+
+            var nodePath = client.getPath(node);
+            nodePath.should.be.equal(path);
+            done();
+        });
+    });
+
+
+    it('should return a node parent path', function(done) {
+
+        var path = '/jcr:system', parentPath = '/';
+        client.getNode(path, function(err, node) {
+
+            var nodeParentPath = client.getParentPath(node);
+            nodeParentPath.should.equal(parentPath);
+            done();
+        });
+    });
+
 });
