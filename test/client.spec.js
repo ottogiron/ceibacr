@@ -2,21 +2,15 @@ require('chai').should();
 var Repository = require('../lib/repository');
 var Client = require('../lib/client');
 var Node = require('../lib/node');
-
+var Config = require('./config');
 
 describe('ceibacr client', function() {
 
-    var options = {
-        port: 8080,
-        hostname: 'localhost',
-        protocol: 'http',
-        repository: 'sample'
-    };
 
     var client;
     before(function(){
 
-        var repository = new Repository(options);
+        var repository = new Repository(Config.repositoryOptions);
 
         client = repository.login({
             user: 'admin',
