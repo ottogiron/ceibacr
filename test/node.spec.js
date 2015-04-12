@@ -41,4 +41,27 @@ describe('ceibacr Node', function(){
         });
     });
 
+
+    it('should return a node name', function(done) {
+
+        var path = '/jcr:system', name = 'jcr:system';
+        client.getNode(path, function(err, node) {
+
+            node.name.should.be.equal(name);
+            done();
+        });
+    });
+
+
+    it('should return a node identifier', function(done) {
+
+        var path = '/jcr:system';
+        client.getNode(path, function(err, node) {
+
+            var identifier = client.getIdentifier(node);
+            identifier.should.be.equal(node.identifier);
+            done();
+        });
+    });
+
 });
