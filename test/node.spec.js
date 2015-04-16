@@ -3,6 +3,7 @@ var Repository = require('../lib/repository');
 var Client = require('../lib/client');
 var Node = require('../lib/node');
 var Config = require('./config');
+var path = require('path');
 
 describe('ceibacr Node', function(){
 
@@ -78,6 +79,29 @@ describe('ceibacr Node', function(){
                 done();
             });
         });
+    });
+
+
+    it('should add a new child node', function(done) {
+
+          var nodeToAdd = {
+                "jcr:primaryType":"nt:unstructured"
+          };
+
+         var parentPath = '/';
+         var relativePath = 'test';
+         var fullPath = path.join(parentPath, relativePath);
+        client.getNode(parentPath, function(err, node) {
+
+            node.addNode(relativePath, nodeToAdd, function(err, addedNode) {
+
+                addedNode.path.should.contain(fullPath);
+                addedNode.remove(function(){
+                    done();
+                });
+            });
+        });
+
     });
 
 });
