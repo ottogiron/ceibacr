@@ -104,4 +104,36 @@ describe('ceibacr Node', function(){
 
     });
 
+
+    it('should update  properties', function(done) {
+
+        var nodeToAdd = {
+              "jcr:primaryType":"nt:unstructured"
+        };
+
+        var parentPath = '/';
+        var relativePath = 'testupdate';
+        var fullPath = path.join(parentPath, relativePath);
+        client.getNode(parentPath, function(err, node) {
+
+          node.addNode(relativePath, nodeToAdd, function(err, addedNode) {
+
+              addedNode.setProperties({
+                  testProperty: 'testValue'
+              }, function(){
+
+                 client.getNode(addedNode.path, function(err, modifiedNode) {
+
+                    modifiedNode.testProperty.should.be.equal('testValue');
+                    addedNode.remove(function(){
+                        done();
+                    });
+                 });
+              });
+
+
+          });
+        });
+    });
+
 });
